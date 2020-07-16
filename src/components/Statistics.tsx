@@ -58,7 +58,7 @@ class PreConnectedStatistics extends React.Component<RouteComponentProps<void>, 
 
     render() {
         return (
-            <div>
+            <>
                 <Bar data={buildGraphData(this.state.frequencies)}
                      options={{
                      title:{
@@ -72,7 +72,7 @@ class PreConnectedStatistics extends React.Component<RouteComponentProps<void>, 
                 }}        
                 />
                 <Button icon='heart' intent='success' text='New Game' onClick={this.handleExit.bind(this)}/>
-            </div>);
+            </>);
     }
 }
 

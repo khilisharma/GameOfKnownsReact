@@ -11,6 +11,7 @@ import { Question } from './components/Question';
 import { NewUser } from './components/NewUser';
 import { Statistics } from './components/Statistics';
 import { WaitingPage } from './components/WaitingPage';
+import { Winner } from './components/Winner';
 
 export class App extends React.Component<RouteComponentProps<any>> {
 
@@ -27,6 +28,9 @@ export class App extends React.Component<RouteComponentProps<any>> {
               </Route>
               <Route path="/wait">
                 <WaitingPage waitTime={60}/>
+              </Route>
+              <Route path="/winner">
+                <Winner />
               </Route>
               <Route path="/">
                 <NewUser />

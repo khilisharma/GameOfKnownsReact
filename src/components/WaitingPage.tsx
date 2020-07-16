@@ -4,7 +4,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Button, NonIdealState } from '@blueprintjs/core';
 
 import { TimerClock } from './TimerClock';
-import { describeToken, getQuestion } from '../clients/gameClient';
+import { describeToken, getQuestion, isWinner } from '../clients/gameClient';
 
 
 interface WaitingPageStateProps {
@@ -39,6 +39,10 @@ class PreConnectedWaitingPage extends React.PureComponent<WaitingPageProps> {
                 }
             } else if (playerId && gameId) {
                 const question = await getQuestion({gameId, playerId});
+                const didWin = await isWinner({gameId, playerId});
+                if (didWin) {
+                    this.props.history.push('/winner');
+                }
                 if (question) {
                     this.props.history.push(`/questions?gameId=${gameId}&playerId=${playerId}`);
                 }
