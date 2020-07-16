@@ -44,7 +44,7 @@ class PreConnectedQuestion extends React.Component<QuestionProps, QuestionState>
         if(!playerId || !gameId) {
             this.props.history.push('/');
         }
-        
+
         const question = await getQuestion({playerId: playerId!, gameId: gameId!});
        
         if(question) {
@@ -72,7 +72,7 @@ class PreConnectedQuestion extends React.Component<QuestionProps, QuestionState>
         } else {
             const response = await submitAnswer({questionId, gameId, playerId, answerId});
             if (response.status === 'WRONG') {
-                this.props.history.push('/stats');
+                this.props.history.push(`/stats?questionId=${questionId}&gameId=${gameId}`);
             } else if (response.status === 'RIGHT') {
                 this.props.history.push(`/wait?gameId=${gameId}&playerId=${playerId}`)
             }

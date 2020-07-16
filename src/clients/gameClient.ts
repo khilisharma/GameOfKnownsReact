@@ -89,7 +89,7 @@ export async function getStatistics({questionId, gameId}: GetStatisticsRequest):
 }
 
 export async function isWinner({gameId, playerId}: IsWinnerRequest): Promise<IsWinnerResponse> {
-    const response: IsWinnerResponse = await makeRequest('GET', `${url}winner/?gameId=${gameId}&playerId=${playerId}`);
+    const response: IsWinnerResponse = await makeRequest('GET', `${url}winner/?gameId=${gameId}&playerId=${playerId}`, null);
     
     return response;
 }
