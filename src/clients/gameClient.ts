@@ -48,6 +48,15 @@ interface SubmitAnswerResponse {
     status: AnswerStatus;
 }
 
+interface IsWinnerResponse {
+    isWinner: boolean;
+}
+
+interface IsWinnerRequest {
+    gameId: string;
+    playerId: string;
+}
+
 export async function describeToken(tokenId: string): Promise<DescribeTokenResponse>  {
     const response: DescribeTokenResponse = await makeRequest('GET', `${url}/token?tokenId=${tokenId}`, null);
 
@@ -76,6 +85,12 @@ export async function getQuestion({playerId, gameId}: GetQuestionRequest): Promi
 export async function getStatistics({questionId, gameId}: GetStatisticsRequest): Promise<GetStatisticsResponse> {
     const response: GetStatisticsResponse = await makeRequest('GET', `${url}/stats?questionId=${questionId}&gameId=${gameId}`, null);
 
+    return response;
+}
+
+export async function isWinner({gameId, playerId}: IsWinnerRequest): Promise<IsWinnerResponse> {
+    const response: IsWinnerResponse = await makeRequest('GET', `${url}winner/?gameId=${gameId}&playerId=${playerId}`);
+    
     return response;
 }
 
