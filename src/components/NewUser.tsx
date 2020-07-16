@@ -42,7 +42,7 @@ class PreConnectedNewUser extends React.Component<NewUserProps, NewUserState> {
         </div> : null;
         return (
             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                <div style={{flex: '1', top: 10, maxWidth: '50%', paddingTop: '10%'}}>
+                <div style={{flex: '1', top: 10, maxWidth: '50%'}}>
                     <FormGroup
                     helperText={error}
                     label="Ready to fight for the Throne???"

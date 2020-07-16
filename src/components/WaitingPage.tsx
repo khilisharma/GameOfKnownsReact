@@ -51,9 +51,10 @@ class PreConnectedWaitingPage extends React.PureComponent<WaitingPageProps> {
 
     render() {
         return(
-            <>
-                <div>Waiting for other players to join</div>
-                <TimerClock exitElement={<NonIdealState icon='issue'
+            <div style={{display: 'flex', flexFlow: 'column', alignItems: 'center', justifyContent: 'center'}}>
+                <div style={{flex: '1', paddingBottom: '30px'}}>Waiting for other players to join</div>
+                <div style={{flex: '2'}}>
+                    <TimerClock exitElement={<NonIdealState icon='issue'
                                                         children={<Button icon='heart-broken'
                                                                           intent='danger'
                                                                           text='Exit'
@@ -63,7 +64,8 @@ class PreConnectedWaitingPage extends React.PureComponent<WaitingPageProps> {
                             spinnerDenominator={this.props.waitTime}
                             loadQuestion={this.handleLoadQuestion.bind(this)}
                             endTime={moment().add(this.props.waitTime, 'seconds')}/>
-            </>
+                </div>
+            </div>
         );
     }
 }
