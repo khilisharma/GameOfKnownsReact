@@ -2,6 +2,7 @@ import React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Button } from '@blueprintjs/core';
 import {Bar} from 'react-chartjs-2';
+import { getStatistics } from '../clients/gameClient';
 
 interface Stat {
     [key: string]: number;
@@ -21,7 +22,36 @@ const buildGraphData = (stats: Stat) => {
             }]
         }
 }
-class PreConnectedStatistics extends React.PureComponent<{frequencies: Stat} & RouteComponentProps<void>> {
+
+interface StatisticsState {
+    frequencies: Stat
+}
+
+class PreConnectedStatistics extends React.Component<RouteComponentProps<void>, StatisticsState> {
+    constructor(props: RouteComponentProps<void>) {
+        super(props);
+        this.state = {
+            frequencies: {
+                1: 0, 2: 0, 3: 0
+            }
+        };
+    }
+
+    async componentDidMount() {
+        await this.handleLoadStats();
+    }
+
+    async handleLoadStats() {
+        const params = new URLSearchParams(this.props.location.search)
+        const questionId  = params.get('questionId');
+        const gameId  = params.get('gameId');
+        if(!questionId || !gameId) {
+            this.props.history.push('/');
+        }
+        const stats = await getStatistics({questionId: questionId!, gameId: gameId!})
+        this.setState({frequencies: stats})
+    }
+
     handleExit() {
         this.props.history.push("/");
     }
@@ -29,7 +59,7 @@ class PreConnectedStatistics extends React.PureComponent<{frequencies: Stat} & R
     render() {
         return (
             <div>
-                <Bar data={buildGraphData(this.props.frequencies)}
+                <Bar data={buildGraphData(this.state.frequencies)}
                      options={{
                      title:{
                         display:true,

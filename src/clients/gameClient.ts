@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/rest";
+const url = "http://localhost/rest";
 
 enum PlayerStatus {
     WAIT = 'WAIT',

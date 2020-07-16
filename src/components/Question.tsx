@@ -20,7 +20,7 @@ interface QuestionState {
     choices: Choice[];
     questionId: string;
     gameId: string;
-    playerId: ''
+    playerId: string;
 }
 
 type QuestionProps = RouteComponentProps<void>;
@@ -39,17 +39,22 @@ class PreConnectedQuestion extends React.Component<QuestionProps, QuestionState>
 
     async handleLoadQuestion() {
         const params = new URLSearchParams(this.props.location.search)
-        const playerId: any  = params.get('playerId');
-        const gameId: any  = params.get('gameId');
-        const question = await getQuestion({playerId, gameId});
+        const playerId  = params.get('playerId');
+        const gameId  = params.get('gameId');
+        if(!playerId || !gameId) {
+            this.props.history.push('/');
+        }
+        
+        const question = await getQuestion({playerId: playerId!, gameId: gameId!});
+       
         if(question) {
             if (question.questionId === this.state.questionId) {
                 this.props.history.push(`/wait?gameId=${gameId}&playerId=${playerId}`);
             }
             this.setState({
                     ...this.state,
-                    gameId,
-                    playerId,
+                    gameId: gameId!,
+                    playerId: playerId!,
                     questionId: question.questionId,
                     questionText: question.questionText,
                     choices: Object.keys(question.choices).map(key => ({id: key, text: question.choices[key]}))

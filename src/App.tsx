@@ -23,7 +23,7 @@ export class App extends React.Component<RouteComponentProps<any>> {
                 <Question />
               </Route>
               <Route path="/stats">
-                <Statistics frequencies={{0: 100, 1: 330, 2: 45}}/>
+                <Statistics />
               </Route>
               <Route path="/wait">
                 <WaitingPage waitTime={60}/>
