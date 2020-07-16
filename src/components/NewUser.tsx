@@ -21,8 +21,6 @@ class PreConnectedNewUser extends React.Component<NewUserProps, NewUserState> {
         }
     }
 
-    
-
     handleOnChange = handleStringChange(name => this.setState({ name, hasError: false }));
 
     async handleSubmission() {
@@ -43,21 +41,25 @@ class PreConnectedNewUser extends React.Component<NewUserProps, NewUserState> {
               intent='danger'/> Name cannot be empty
         </div> : null;
         return (
-            <FormGroup
-                helperText={error}
-                label="Ready to fight for the Throne???"
-                labelFor="text-input">
-             <InputGroup onChange={this.handleOnChange.bind(this)}
-                         round={true}
-                         placeholder='John Snow'
-                         value={this.state.name}
-                         large={true}/>
-             <Button intent='primary' 
-                     type='submit' 
-                     text='Join game'
-                     large={true}
-                     onClick={this.handleSubmission.bind(this)}/>                 
-            </FormGroup>
+            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                <div style={{flex: '1', top: 10, maxWidth: '50%', paddingTop: '10%'}}>
+                    <FormGroup
+                    helperText={error}
+                    label="Ready to fight for the Throne???"
+                    labelFor="text-input">
+                        <InputGroup onChange={this.handleOnChange.bind(this)}
+                                    round={true}
+                                    placeholder='John Snow'
+                                    value={this.state.name}
+                                    large={true}/>
+                        <Button intent='primary' 
+                                type='submit' 
+                                text='Join game'
+                                large={true}
+                                onClick={this.handleSubmission.bind(this)}/>                 
+                    </FormGroup>
+                </div>
+            </div>
         );
     }
 }
