@@ -38,7 +38,10 @@ class PreConnectedWaitingPage extends React.PureComponent<WaitingPageProps> {
                     }
                 }
             } else if (playerId && gameId) {
-                this.props.history.push(`/questions?gameId=${gameId}&playerId=${playerId}`);
+                const question = await getQuestion({gameId, playerId});
+                if (question) {
+                    this.props.history.push(`/questions?gameId=${gameId}&playerId=${playerId}`);
+                }
             } else {
                 this.props.history.push('/')
             }
