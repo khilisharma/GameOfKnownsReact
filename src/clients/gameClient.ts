@@ -1,4 +1,4 @@
-const url = "http://localhost/rest";
+const url = "http://ec2-34-213-151-190.us-west-2.compute.amazonaws.com/rest";
 
 enum PlayerStatus {
     WAIT = 'WAIT',

@@ -20,7 +20,7 @@ class PreConnectedWinner extends React.PureComponent<RouteComponentProps<void>> 
     }
 
     render() {
-        return (<div style={{display: 'flex', flexFlow: 'column'}}> 
+        return (<div style={{display: 'flex', flexFlow: 'column', padding: '10em 0'}}> 
             <Fireworks {...fxProps}/>
             <div style={{flex: 1}}>All hail the King of Knowns!!!</div>
             <div style={{flex: 0}}>
